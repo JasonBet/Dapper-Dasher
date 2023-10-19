@@ -18,8 +18,13 @@ int main()
 
     int posY{windowHeight-height};
     int velocity{0};
-
+    
+    // is the rectangle in the air
     bool isInAir=false;
+
+    // jump velocity
+    const int jumpVel{-22};
+
     // set fps
     SetTargetFPS(60);
 
@@ -47,11 +52,11 @@ int main()
 
         if(IsKeyPressed(KEY_SPACE)&&!isInAir)
         {
-            velocity-=10;
+            velocity+=jumpVel;
         }
 
         // update position
-        posY += velocity;
+        posY += velocity; 
 
         DrawRectangle(windowWidth/2,posY,width,height, BLUE);
         // stop drawing
