@@ -18,6 +18,8 @@ int main()
 
     int posY{windowHeight-height};
     int velocity{0};
+
+    bool isInAir=false;
     // set fps
     SetTargetFPS(60);
 
@@ -33,15 +35,17 @@ int main()
         {
             // rectangle is on the ground
             velocity=0;
+            isInAir=false;
         }
         else
         {
             // rectange is in the air
+            isInAir=true;
             // apply gravity
             velocity+=gravity;
         }
 
-        if(IsKeyPressed(KEY_SPACE))
+        if(IsKeyPressed(KEY_SPACE)&&!isInAir)
         {
             velocity-=10;
         }
