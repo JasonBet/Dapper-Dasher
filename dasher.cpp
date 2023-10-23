@@ -9,8 +9,8 @@ int main()
     // initialize window
     InitWindow(windowWidth,windowHeight,"Dapper-Dasher");
 
-    // acceleration due to gravity (pixels/frame)/frame
-    const int gravity{1};
+    // acceleration due to gravity (pixels/sec)/sec
+    const int gravity{1000};
 
     Texture2D scarfy=LoadTexture("textures/scarfy.png");
     Rectangle scarfyRec;
@@ -22,13 +22,14 @@ int main()
     scarfyPos.x=windowWidth/2-scarfyRec.width/2;
     scarfyPos.y=windowHeight-scarfyRec.height;
 
+    // pixels / frame
     int velocity{0};
     
     // is the rectangle in the air
     bool isInAir=false;
 
-    // jump velocity
-    const int jumpVel{-22};
+    // jump velocity (pixels / sec)
+    const int jumpVel{-600};
 
     // set fps
     SetTargetFPS(60);
@@ -36,6 +37,9 @@ int main()
     // game loop
     while(!WindowShouldClose())
     {   
+        // delta time (time since last frame)
+        const float dT{GetFrameTime()};
+
         // start drawing
         BeginDrawing();
         ClearBackground(WHITE);
@@ -52,7 +56,7 @@ int main()
             // rectange is in the air
             isInAir=true;
             // apply gravity
-            velocity+=gravity;
+            velocity+=gravity*dT;
         }
 
         if(IsKeyPressed(KEY_SPACE)&&!isInAir)
@@ -61,7 +65,7 @@ int main()
         }
 
         // update position
-        scarfyPos.y += velocity; 
+        scarfyPos.y += velocity*dT; 
 
         DrawTextureRec(scarfy,scarfyRec,scarfyPos,WHITE);
 
