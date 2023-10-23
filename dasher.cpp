@@ -22,6 +22,10 @@ int main()
     scarfyPos.x=windowWidth/2-scarfyRec.width/2;
     scarfyPos.y=windowHeight-scarfyRec.height;
 
+    // animation frame
+    int frame{};
+    const float updateTime=1.0/12;
+
     // pixels / frame
     int velocity{0};
     
@@ -67,6 +71,12 @@ int main()
         // update position
         scarfyPos.y += velocity*dT; 
 
+        // update animation frame
+        scarfyRec.x=frame*scarfyRec.width;
+        frame++;
+        if(frame>5){
+            frame=0;
+        }
         DrawTextureRec(scarfy,scarfyRec,scarfyPos,WHITE);
 
         // stop drawing
