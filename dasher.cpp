@@ -65,21 +65,6 @@ int main()
     scarfyData.updateTime=1.0/12.0;
     scarfyData.runningTime=0.0;
 
-    Rectangle scarfyRec;
-    scarfyRec.width=scarfy.width/6;
-    scarfyRec.height=scarfy.height;
-    scarfyRec.x=0;
-    scarfyRec.y=0;
-    Vector2 scarfyPos;
-    scarfyPos.x=windowWidth/2-scarfyRec.width/2;
-    scarfyPos.y=windowHeight-scarfyRec.height;
-
-    // animation frame
-    int frame{};
-    // amount of time before we update the animation frame
-    const float updateTime=1.0/12;
-    float runningTime{};
-
     // pixels / frame
     int velocity{0};
     
@@ -103,7 +88,7 @@ int main()
         ClearBackground(WHITE);
 
         // perform ground check
-        if(scarfyPos.y>=windowHeight-scarfyRec.height)
+        if(scarfyData.pos.y>=windowHeight-scarfyData.rec.height)
         {
             // rectangle is on the ground
             velocity=0;
@@ -126,20 +111,20 @@ int main()
         nebPos.x+=nebVel*dT;
 
         // update scarfy position
-        scarfyPos.y += velocity*dT; 
+        scarfyData.pos.y += velocity*dT; 
 
         // update running time
-        runningTime+=dT;
+        scarfyData.runningTime+=dT;
 
         // update scarfy animation frame
         if(!isInAir){
-            if(runningTime>=updateTime){
-                runningTime=0.0;
+            if(scarfyData.runningTime>=scarfyData.updateTime){
+                scarfyData.runningTime=0.0;
                 // update animation frame
-                scarfyRec.x=frame*scarfyRec.width;
-                frame++;
-                if(frame>5){
-                    frame=0;
+                scarfyData.rec.x=scarfyData.frame*scarfyData.rec.width;
+                scarfyData.frame++;
+                if(scarfyData.frame>5){
+                    scarfyData.frame=0;
                 }
             }
         }
