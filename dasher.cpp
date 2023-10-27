@@ -146,7 +146,7 @@ int main()
         DrawTextureRec(nebula, nebRec, nebPos, WHITE);
 
         // draw scarfy
-        DrawTextureRec(scarfy,scarfyRec,scarfyPos,WHITE);
+        DrawTextureRec(scarfy,scarfyData.rec,scarfyData.pos,WHITE);
 
         // stop drawing
         EndDrawing();
