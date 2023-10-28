@@ -25,9 +25,10 @@ int main()
     // nebula variables
     Texture2D nebula=LoadTexture("textures/12_nebula_spritesheet.png");
 
-    AnimData nebulae[3]{};
+    const int sizeOfNebulae{3};
+    AnimData nebulae[sizeOfNebulae]{};
 
-    for(int i=0;i<3;i++)
+    for(int i=0;i<sizeOfNebulae;i++)
     {
         nebulae[i].rec.x=0.0;
         nebulae[i].rec.y=0.0;
@@ -124,6 +125,11 @@ int main()
                     scarfyData.frame=0;
                 }
             }
+        }
+
+        for(int i=0;i<sizeOfNebulae;i++)
+        {
+            
         }
 
         // update nebula animation frame
