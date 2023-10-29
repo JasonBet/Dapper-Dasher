@@ -48,7 +48,7 @@ int main()
     // nebula variables
     Texture2D nebula=LoadTexture("textures/12_nebula_spritesheet.png");
 
-    const int sizeOfNebulae{20};
+    const int sizeOfNebulae{2};
     AnimData nebulae[sizeOfNebulae]{};
 
     for(int i=0;i<sizeOfNebulae;i++)
@@ -100,7 +100,7 @@ int main()
     const int jumpVel{-600};
 
     bool collision{};
-    
+
     // set fps
     SetTargetFPS(60);
 
@@ -223,6 +223,12 @@ int main()
         if(collision)
         {
             // lose the game
+            DrawText("GAME OVER!",windowDimensions[0]/4,windowDimensions[1]/2,40,RED);
+        }
+        else if(scarfyData.pos.x>finishLine)
+        {
+            // win game
+            DrawText("YOU WIN!",windowDimensions[0]/4,windowDimensions[1]/2,40,BLUE);
         }
         else
         {
