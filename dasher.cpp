@@ -82,6 +82,8 @@ int main()
 
     // pixels / frame
     int velocity{0};
+
+    Texture2D background=LoadTexture("textures/far-buildings.png");
     
     // is the rectangle in the air
     bool isInAir=false;
@@ -101,6 +103,10 @@ int main()
         // start drawing
         BeginDrawing();
         ClearBackground(WHITE);
+
+        // draw the background
+        Vector2 bgPos{0.0,0.0};
+        DrawTextureEx(background,bgPos,0.0,1.0,WHITE);
 
         // perform ground check
         if(isOnGround(scarfyData,windowDimensions[1]))
@@ -158,6 +164,7 @@ int main()
         EndDrawing();
     }
 
+    UnloadTexture(background);
     UnloadTexture(scarfy);
     UnloadTexture(nebula);
     CloseWindow();
