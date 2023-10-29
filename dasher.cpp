@@ -84,6 +84,7 @@ int main()
     int velocity{0};
 
     Texture2D background=LoadTexture("textures/far-buildings.png");
+    float bgX{};
     
     // is the rectangle in the air
     bool isInAir=false;
@@ -104,9 +105,11 @@ int main()
         BeginDrawing();
         ClearBackground(WHITE);
 
+        bgX-=20*dT;
+
         // draw the background
-        Vector2 bgPos{0.0,0.0};
-        DrawTextureEx(background,bgPos,0.0,1.0,WHITE);
+        Vector2 bgPos{bgX,0.0};
+        DrawTextureEx(background,bgPos,0.0,2.0,WHITE);
 
         // perform ground check
         if(isOnGround(scarfyData,windowDimensions[1]))
