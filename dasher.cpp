@@ -64,6 +64,8 @@ int main()
         nebulae[i].updateTime=1.0/16.0;
     }
 
+    float finishLine{nebulae[sizeOfNebulae-1].pos.x};
+
     // nebula X velocity (pixels/second)
     int nebVel{-200};
 
@@ -83,12 +85,11 @@ int main()
     // pixels / frame
     int velocity{0};
 
+    // load background, midground, foreground textures
     Texture2D background=LoadTexture("textures/far-buildings.png");
     float bgX{};
-
     Texture2D midground=LoadTexture("textures/back-buildings.png");
     float mgX{};
-
     Texture2D foreground=LoadTexture("textures/foreground.png");
     float fgX{};
     
@@ -126,7 +127,7 @@ int main()
         }
 
         // scroll foreground
-        fgX-=40*dT;
+        fgX-=80*dT;
         if(fgX<=-foreground.width*2)
         {
             fgX=0.0;
@@ -176,6 +177,9 @@ int main()
             nebulae[i].pos.x+=nebVel*dT;
         }
 
+        // update finish line
+        finishLine+=nebVel*dT;
+
         // update scarfy position
         scarfyData.pos.y += velocity*dT; 
 
@@ -208,6 +212,7 @@ int main()
 
     UnloadTexture(background);
     UnloadTexture(midground);
+    UnloadTexture(foreground);
     UnloadTexture(scarfy);
     UnloadTexture(nebula);
     CloseWindow();
