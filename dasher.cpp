@@ -142,17 +142,7 @@ int main()
         for(int i=0;i<sizeOfNebulae;i++)
         {
             // update nebulae animation frames
-            nebulae[i].runningTime+=dT;
-            if(nebulae[i].runningTime>=nebulae[i].updateTime)
-            {
-                nebulae[i].runningTime=0.0;
-                nebulae[i].rec.x=nebulae[i].frame*nebulae[i].rec.width;
-                nebulae[i].frame++;
-                if(nebulae[i].frame>7)
-                {
-                    nebulae[i].frame=0;
-                }
-            }
+            nebulae[i]=updateAnimdata(nebulae[i],dT,7);
         }
         
         for(int i=0;i<sizeOfNebulae;i++)
